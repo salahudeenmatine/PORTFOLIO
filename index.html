@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salahudeen Matine - Portfolio</title>
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #3a6ea5;
+            --secondary-color: #004e98;
+            --accent-color: #ff6b6b;
+            --light-color: #f8f9fa;
+            --dark-color: #333;
+            --text-color: #555;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-color);
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+        
+        /* Header */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--dark-color);
+        }
+        
+        .nav-links {
+            display: flex;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            font-weight: 500;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('/api/placeholder/1200/800') center/cover;
+            margin-bottom: 60px;
+        }
+        
+        .hero-content {
+            max-width: 700px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: var(--dark-color);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        /* About Section */
+        #about {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--dark-color);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary-color);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--dark-color);
+        }
+        
+        .about-image {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .about-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Skills Section */
+        #skills {
+            padding: 80px 0;
+            background-color: #f0f4f8;
+        }
+        
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .skill-card {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .skill-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+        
+        .skill-card ul li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .skill-card ul li::before {
+            content: '•';
+            color: var(--primary-color);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        /* Projects Section */
+        #projects {
+    padding: 80px 0;
+}
+
+.projects-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.project-card {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+}
+
+.project-content {
+    padding: 25px;
+}
+
+.project-card h3 {
+    font-size: 1.5rem;
+    color: var(--dark-color);
+    margin-bottom: 10px;
+}
+
+.project-tag {
+    color: var(--primary-color);
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.project-tech span {
+    background-color: #f0f4f8;
+    color: var(--primary-color);
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+        /* Education Section */
+        #education {
+            padding: 80px 0;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 3px;
+            background-color: var(--primary-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1.5px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border: 4px solid var(--primary-color);
+            border-radius: 50%;
+            top: 15px;
+            right: -12px;
+            z-index: 1;
+        }
+        
+        .timeline-item:nth-child(even)::after {
+            left: -12px;
+        }
+        
+        .timeline-content {
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .timeline-content h3 {
+            color: var(--dark-color);
+            margin-bottom: 10px;
+        }
+        
+        .timeline-content h4 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .timeline-content p {
+            margin-bottom: 0;
+        }
+        
+        /* Experience Section */
+        #experience {
+            padding: 80px 0;
+            background-color: #f0f4f8;
+        }
+        
+        .experience-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .experience-item {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .experience-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .experience-item h3 {
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            margin-bottom: 10px;
+        }
+        
+        .experience-item h4 {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .experience-item ul li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .experience-item ul li::before {
+            content: '→';
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+        }
+        
+        /* Contact Section */
+        #contact {
+            padding: 80px 0;
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 50px;
+        }
+        
+        .contact-info {
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .contact-info h3 {
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            margin-bottom: 20px;
+        }
+        
+        .contact-info p {
+            margin-bottom: 15px;
+        }
+        
+        .contact-info p i {
+            color: var(--primary-color);
+            margin-right: 10px;
+        }
+        
+        .contact-form {
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .contact-form h3 {
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            height: 150px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        footer p {
+            margin-bottom: 15px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 20px;
+            transition: color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        /* Responsive Design */
+        @media screen and (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media screen and (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                width: 70%;
+                height: calc(100vh - 80px);
+                background-color: white;
+                flex-direction: column;
+                align-items: center;
+                padding-top: 40px;
+                transition: all 0.5s ease;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .timeline::after {
+                left: 20px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 50px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-item::after {
+                left: 11px;
+            }
+            
+            .timeline-item:nth-child(even)::after {
+                left: 11px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Salahudeen Matine</div>
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="hamburger" onclick="toggleMenu()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Salahudeen Matine</h1>
+                <p>Cybersecurity Student & Customer Support Specialist</p>
+                <p>Enthusiastic and adaptable individual with a strong educational background, including a Level 3 BTEC in Applied Science and current studies in Cybersecurity at West London University.</p>
+                <a href="#contact" class="btn">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Hello, I'm Salahudeen</h3>
+                    <p>I am a trilingual professional currently pursuing studies in Cybersecurity at West London University. With a strong educational foundation in Applied Sciences and various customer-facing roles, I've developed excellent interpersonal skills and a customer-centric approach to problem-solving.</p>
+                    <p>I am passionate about leveraging my technical knowledge and customer service experience to excel in the fields of cybersecurity, customer support, and sales. My adaptability and quick decision-making abilities enable me to thrive in fast-paced environments and deliver exceptional results.</p>
+                    <p>Being fluent in English, Arabic, and French allows me to communicate effectively with diverse audiences and navigate multicultural environments with ease.</p>
+                </div>
+                <div class="about-image">
+                    <img src="/api/placeholder/400/400" alt="Professional photo placeholder">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">My Skills</h2>
+            <div class="skills-container">
+                <div class="skill-card">
+                    <h3>Customer Support</h3>
+                    <ul>
+                        <li>Assessing customer support needs</li>
+                        <li>Providing solutions and referrals</li>
+                        <li>Maintaining customer focus while troubleshooting</li>
+                        <li>Reassuring customers when delivering solutions</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>Technical Adaptability</h3>
+                    <ul>
+                        <li>Flexibility to adapt to different technical specialties</li>
+                        <li>Quick decision-making abilities</li>
+                        <li>Excellent time management</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>Language Skills</h3>
+                    <ul>
+                        <li>Fluent in English</li>
+                        <li>Fluent in Arabic</li>
+                        <li>Fluent in French</li>
+                        <li>Trilingual communication capabilities</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+<section id="projects">
+    <div class="container">
+        <h2 class="section-title">My Projects</h2>
+        <div class="projects-container">
+            <div class="project-card">
+                <div class="project-content">
+                    <h3>Security Audit Simulation</h3>
+                    <p class="project-tag">University Project</p>
+                    <p>Conducted a vulnerability scan and analysis on a simulated network using Nmap and Nessus. Identified security weaknesses and proposed mitigation strategies based on industry best practices.</p>
+                    <div class="project-tech">
+                        <span>Nmap</span>
+                        <span>Nessus</span>
+                        <span>Vulnerability Assessment</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-content">
+                    <h3>SQL Injection Lab (DVWA)</h3>
+                    <p class="project-tag">Security Research</p>
+                    <p>Simulated SQLi attacks on a vulnerable web app. Bypassed login authentication using crafted payloads and analyzed database vulnerabilities through hands-on testing scenarios.</p>
+                    <div class="project-tech">
+                        <span>DVWA</span>
+                        <span>XAMPP</span>
+                        <span>Burp Suite</span>
+                        <span>SQLi</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-content">
+                    <h3>Packet Tracer Network Design</h3>
+                    <p class="project-tag">University Project</p>
+                    <p>Designed a secure network topology including segmentation and Access Control Lists (ACLs). Implemented security zones and configured secure routing protocols to ensure data protection.</p>
+                    <div class="project-tech">
+                        <span>Cisco Packet Tracer</span>
+                        <span>Network Security</span>
+                        <span>ACLs</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Education Section -->
+    <section id="education">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Cybersecurity</h3>
+                        <h4>West London University</h4>
+                        <p>Current Studies</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>BTEC Level 3 Diploma in Applied Sciences</h3>
+                        <h4>London</h4>
+                        <p>2023</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Baccalaureate</h3>
+                        <h4>Agadir, Morocco</h4>
+                        <p>2021</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <h2 class="section-title">Work Experience</h2>
+            <div class="experience-container">
+                <div class="experience-item">
+                    <h3>Sales Rep for Sightseeing Tours</h3>
+                    <h4>London | 2022-2023</h4>
+                    <ul>
+                        <li>Demonstrated confidence and persuasion skills to sell tickets</li>
+                        <li>Assessed customers' needs and provided information</li>
+                        <li>Directed customers to relevant services</li>
+                        <li>Adapted to changes in tour itineraries and offers</li>
+                    </ul>
+                </div>
+                <div class="experience-item">
+                    <h3>Waiter</h3>
+                    <h4>London | 2021</h4>
+                    <ul>
+                        <li>Developed strong interpersonal and communication skills</li>
+                        <li>Enhanced ability to work efficiently in a fast-paced environment</li>
+                        <li>Assisted in providing excellent customer service</li>
+                    </ul>
+                </div>
+                <div class="experience-item">
+                    <h3>Sales Person Market Stall (Shoes)</h3>
+                    <h4>London | 2019</h4>
+                    <ul>
+                        <li>Gained valuable experience in selling products</li>
+                        <li>Developed product knowledge and the ability to recommend suitable items</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Me</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Get In Touch</h3>
+                    <p><i>📞</i> Phone: 07305 295654</p>
+                    <p><i>✉️</i> Email: salahmatine@gmail.com</p>
+                    <p><i>📍</i> Location: London, UK</p>
+                </div>
+                <div class="contact-form">
+                    <h3>Send Me a Message</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#" title="LinkedIn">LinkedIn</a>
+                <a href="#" title="Twitter">Twitter</a>
+                <a href="#" title="GitHub">GitHub</a>
+            </div>
+            <p>&copy; 2025 Salahudeen Matine. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+        
+        // Smooth scrolling for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    const navLinks = document.querySelector('.nav-links');
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                    }
+                }
+            });
+        });
+        
+        // Form submission handling
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form values
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const subject = document.getElementById('subject').value;
+                const message = document.getElementById('message').value;
+                
+                // In a real implementation, you would send this data to a server
+                // For now, we'll just show an alert
+                alert(`Thank you, ${name}! Your message has been received. I'll get back to you soon.`);
+                
+                // Reset form
+                contactForm.reset();
+            });
+        }
+        
+        // Animation on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
